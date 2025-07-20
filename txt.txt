@@ -1,7 +1,21 @@
 TERMINAL  run
+
+http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/
+
+ ---          python -m uvicorn backend.main:app --reload
+
+
 back end ---                  python -m uvicorn main:app --reload 
 
 
 
 
+
 front end ---          npm start
+
+cd skillmap-ai/frontend
+npm start
+
+
+http://localhost:3000/
