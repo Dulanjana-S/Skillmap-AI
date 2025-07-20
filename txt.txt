@@ -1,0 +1,7 @@
+TERMINAL  run
+back end ---                  python -m uvicorn main:app --reload 
+
+
+
+
+front end ---          npm start
