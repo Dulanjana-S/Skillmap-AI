@@ -83,11 +83,6 @@ def get_db():
         db.close()
 
 
-
-
-
-
-
 print("Database connection successful!")
 
 
