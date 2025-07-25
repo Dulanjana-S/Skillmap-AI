@@ -159,6 +159,15 @@ def get_db():
         db.close()
 
 
+#adzuna api
+from backend.routes import adzuna
+app.include_router(adzuna.router)
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))  #backend
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))  # root
+
 
 
 
