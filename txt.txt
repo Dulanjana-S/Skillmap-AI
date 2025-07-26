@@ -19,3 +19,17 @@ npm start
 
 
 http://localhost:3000/
+
+
+
+
+
+
+
+Backend runs on port 8000 (uvicorn backend.main:app --reload).
+
+Frontend runs on port 3000 (npm start).
+
+React frontend sends requests to http://127.0.0.1:8000/predict.
+
+Backend allows CORS from http://localhost:3000.

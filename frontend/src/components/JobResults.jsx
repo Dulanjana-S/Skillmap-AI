@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const JobResults = ({ skill }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/jobs?skill=${skill}`);
-        setJobs(response.data.jobs);
+        const res = await axios.get(`http://localhost:8000/jobs?skill=${skill}`);
+        setJobs(res.data.jobs);
       } catch (err) {
-        console.error(err);
-        setError("Failed to fetch job results.");
+        console.error("Failed to fetch jobs", err);
       } finally {
         setLoading(false);
       }
@@ -22,34 +20,42 @@ const JobResults = ({ skill }) => {
     fetchJobs();
   }, [skill]);
 
-  if (loading) return <p>Loading job listings...</p>;
-  if (error) return <p>{error}</p>;
-  if (jobs.length === 0) return <p>No jobs found for "{skill}"</p>;
+  if (loading) return <p>Loading jobs...</p>;
 
   return (
-    <div className="mt-6">
-      <h2 className="text-xl font-bold mb-4">Job Opportunities for "{skill}"</h2>
-      <div className="grid gap-4">
+    <div>
+      <h2 className="text-xl font-semibold mt-6 mb-4">Job Opportunities</h2>
+      {jobs.length === 0 && <p>No job results found for "{skill}".</p>}
+      <ul className="space-y-4">
         {jobs.map((job, index) => (
-          <div key={index} className="p-4 border rounded shadow">
-            <h3 className="text-lg font-semibold">{job.title}</h3>
+          <li key={index} className="p-4 border rounded shadow">
+            <h3 className="text-lg font-bold">{job.title}</h3>
             <p><strong>Company:</strong> {job.company}</p>
             <p><strong>Location:</strong> {job.location}</p>
             {job.salary && <p><strong>Salary:</strong> {job.salary}</p>}
-            <p className="text-sm mt-2">{job.description.slice(0, 150)}...</p>
-            <a
-              href={job.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline mt-2 block"
-            >
+            <p>{job.description.slice(0, 150)}...</p>
+            <a href={job.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               View Job
             </a>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
 
 export default JobResults;
+
+
+import JobResults from "./JobResults";
+
+const ResultPage = ({ recommendation }) => {
+  const skill = "software";
+
+  return (
+    <div>
+      <h1>Recommended Career: {recommendation}</h1>
+      <JobResults skill={skill} />
+    </div>
+  );
+};

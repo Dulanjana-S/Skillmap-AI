@@ -6,34 +6,42 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setResult(null);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setResult(null);
 
-    const inputData = {
-      skills: skills.split(",").map(skill => skill.trim().toLowerCase()),
-      interests: [interest],
-    };
+ const inputData = {
+  skills: skills.split(",").map((s) => s.trim().toLowerCase()),   // array of strings
+  interests: [interest.toLowerCase()]                             // array with one string
+};
 
-    try {
-      const response = await fetch("http://127.0.0.1:8000/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(inputData)
-      });
 
-      const data = await response.json();
-      setResult(data.recommendation);
-    } catch (error) {
-      console.error("Prediction failed:", error);
-      setResult([{ career: "Error", fit: 0 }]);
+  try {
+    const response = await fetch("http://127.0.0.1:8000/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(inputData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || 'Server error');
     }
 
-    setLoading(false);
-  };
+    const data = await response.json();
+    setResult(data.recommendation);
+  } catch (error) {
+    console.error("Prediction failed:", error);
+    setResult([{ career: "Error", fit: 0 }]);
+  }
+
+  setLoading(false);
+};
+
+
 
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial" }}>
@@ -88,4 +96,6 @@ function App() {
 }
 
 export default App;
+
+
 
