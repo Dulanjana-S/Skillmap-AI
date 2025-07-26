@@ -1,49 +1,39 @@
 import React, { useState } from "react";
+ // import './dark-theme.css';    // not loaded in this file, but can be used if needed
+
 
 function App() {
   const [skills, setSkills] = useState("");
   const [interest, setInterest] = useState("tech");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [jobListings, setJobListings] = useState([]);
   const [jobsLoading, setJobsLoading] = useState(false);
-  const [jobsError, setJobsError] = useState(null);
 
   const fetchJobs = async (keyword) => {
-  setJobsLoading(true);
-  setJobsError(null);
-  try {
-    const response = await fetch(`http://127.0.0.1:8000/jobs?what=${encodeURIComponent(keyword)}`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    if (data.jobs) {
-      setJobListings(data.jobs);
-    } else {
+    setJobsLoading(true);
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/jobs?what=${encodeURIComponent(keyword)}`
+      );
+      const data = await response.json();
+      setJobListings(data.jobs || []);
+    } catch (error) {
+      console.error("Job fetch failed:", error);
       setJobListings([]);
     }
-  } catch (error) {
-    setJobsError(error.message);
-    setJobListings([]);
-  }
-  setJobsLoading(false);
-};
-
-
+    setJobsLoading(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResult(null);
     setJobListings([]);
-    setJobsError(null);
 
     const inputData = {
-      skills: skills.split(",").map((s) => s.trim().toLowerCase()), // array of strings
-      interests: [interest.toLowerCase()], // array with one string
+      skills: skills.split(",").map((s) => s.trim().toLowerCase()),
+      interests: [interest.toLowerCase()],
     };
 
     try {
@@ -55,19 +45,12 @@ function App() {
         body: JSON.stringify(inputData),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Server error");
-      }
-
       const data = await response.json();
       setResult(data.recommendation);
 
-      // Fetch jobs for the recommended career
-    if (data.recommendation && data.recommendation.length > 0 && data.recommendation[0].career) {
-      await fetchJobs(data.recommendation[0].career);
+      if (data.recommendation?.length > 0) {
+        await fetchJobs(data.recommendation[0].career);
       }
-
     } catch (error) {
       console.error("Prediction failed:", error);
       setResult([{ career: "Error", fit: 0 }]);
@@ -77,96 +60,104 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-      <h1>Skillmap AI — Career Predictor</h1>
+    <div className="min-h-screen bg-gray-900 text-white font-sans px-4 py-6">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-center text-purple-400">
+          Skillmap AI — Career Predictor
+        </h1>
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label>Skills (comma-separated):</label>
-          <br />
-          <input
-            type="text"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
-            placeholder="e.g. python, programming"
-            style={{ width: "100%", padding: "0.5rem" }}
-            required
-          />
-        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-gray-800 p-6 rounded-lg shadow-lg"
+        >
+          <div>
+            <label className="block mb-2 text-sm text-gray-300">
+              Skills (comma-separated):
+            </label>
+            <input
+              type="text"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+              placeholder="e.g. python, design"
+              className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
+          </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label>Interests:</label>
-          <br />
-          <select
-            value={interest}
-            onChange={(e) => setInterest(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem" }}
+          <div>
+            <label className="block mb-2 text-sm text-gray-300">Interests:</label>
+            <select
+              value={interest}
+              onChange={(e) => setInterest(e.target.value)}
+              className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="tech">Tech</option>
+              <option value="business">Business</option>
+              <option value="art">Art</option>
+              <option value="marketing">Marketing</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded w-full font-semibold transition"
           >
-            <option value="tech">Tech</option>
-            <option value="business">Business</option>
-            <option value="art">Art</option>
-            <option value="marketing">Marketing</option>
-          </select>
-        </div>
+            {loading ? "Loading..." : "Get Career Recommendation"}
+          </button>
+        </form>
 
-        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
-          {loading ? "Loading..." : "Get Career Recommendation"}
-        </button>
-      </form>
+        {result && (
+          <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4 text-purple-400">
+              Recommended Careers:
+            </h2>
+            <ul className="space-y-2">
+              {result.map((item, index) => (
+                <li key={index} className="bg-gray-700 p-3 rounded-lg">
+                  <span className="font-medium text-white">{item.career}</span>{" "}
+                  —{" "}
+                  <span className="text-green-400">
+                    Fit Score: {item.fit.toFixed(2)}%
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-      {/* Recommended careers */}
-      {result && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3>Recommended Careers:</h3>
-          <ul>
-            {result.map((item, index) => (
-              <li key={index}>
-                <strong>{item.career}</strong> — Fit Score:{" "}
-                {item.fit.toFixed(2)}%
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {jobsLoading && (
+          <p className="text-sm text-gray-300 mt-4">Loading jobs...</p>
+        )}
 
-      {/* Job listings section */}
-      {jobsLoading && <p>Loading job listings...</p>}
-
-      {jobsError && (
-        <p style={{ color: "red" }}>Error loading jobs: {jobsError}</p>
-      )}
-
-      {jobListings.length > 0 && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3>Job Listings for {result[0].career}:</h3>
-          <ul>
-            {jobListings.map((job, index) => (
-              <li key={index} style={{ marginBottom: "1rem" }}>
-                <a
-                  href={job.redirect_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontWeight: "bold", color: "#0077cc" }}
-                >
-                  {job.title}
-                </a>
-                <p>{job.location.display_name}</p>
-                <p>
-                  Salary:{" "}
-                  {job.salary_min
-                    ? `$${job.salary_min.toLocaleString()}`
-                    : "N/A"}{" "}
-                  -{" "}
-                  {job.salary_max
-                    ? `$${job.salary_max.toLocaleString()}`
-                    : "N/A"}
-                </p>
-                <p>{job.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {!jobsLoading && jobListings.length > 0 && (
+          <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4 text-purple-400">
+              Job Listings
+            </h2>
+            <ul className="space-y-4">
+              {jobListings.map((job, idx) => (
+                <li key={idx} className="bg-gray-700 p-4 rounded-lg">
+                  <h3 className="font-semibold text-white text-lg">{job.title}</h3>
+                  <p className="text-gray-300">
+                    {job.company?.display_name || "Unknown Company"}
+                  </p>
+                  <p className="text-gray-400 text-sm">
+                    {job.location?.display_name || "Unknown Location"}
+                  </p>
+                  <a
+                    href={job.redirect_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 text-purple-400 hover:underline"
+                  >
+                    View Job →
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
