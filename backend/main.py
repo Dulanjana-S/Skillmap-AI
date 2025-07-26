@@ -10,16 +10,16 @@ from backend.database import engine, SessionLocal
 from backend import models
 from backend.routes.adzuna_routes import router as adzuna_router
 
-# ---------- Database Setup ----------
+# Database Setup 
 models.Base.metadata.create_all(bind=engine)
 
-# ---------- FastAPI App Initialization ----------
+# FastAPI App Initialization
 app = FastAPI()
 
-# ✅ Add router BEFORE any route definitions
+#  Add router BEFORE any route definitions
 app.include_router(adzuna_router, prefix="/jobs", tags=["Jobs"])
 
-# ---------- CORS Middleware ----------
+# CORS Middleware 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # frontend origin
@@ -28,7 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------- Load & Vectorize Career Data ----------
+# Load & Vectorize Career Data
 data_path = os.path.join(os.path.dirname(__file__), 'data', 'career_data.csv')
 df = pd.read_csv(data_path)
 df["features"] = (df["skills"].str.replace(";", " ") + " " + df["interest"]).str.lower()
@@ -36,17 +36,17 @@ df["features"] = (df["skills"].str.replace(";", " ") + " " + df["interest"]).str
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df["features"])
 
-# ---------- Input Schema ----------
+#  Input Schema 
 class CareerInput(BaseModel):
     skills: list[str]
     interests: list[str]
 
-# ---------- Root Route ----------
+# Root Route 
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Skillmap AI API"}
 
-# ---------- Predict Route ----------
+# Predict Route
 @app.post("/predict")
 def predict(input: CareerInput):
     input_text = " ".join(input.skills + input.interests).lower()
@@ -66,7 +66,7 @@ def predict(input: CareerInput):
         ]
     }
 
-# ---------- DB Dependency ----------
+#  DB Dependency
 def get_db():
     db = SessionLocal()
     try:

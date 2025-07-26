@@ -63,11 +63,11 @@ function App() {
       const data = await response.json();
       setResult(data.recommendation);
 
-  // <-- Add your check here before calling fetchJobs
+      // Fetch jobs for the recommended career
     if (data.recommendation && data.recommendation.length > 0 && data.recommendation[0].career) {
       await fetchJobs(data.recommendation[0].career);
       }
-      
+
     } catch (error) {
       console.error("Prediction failed:", error);
       setResult([{ career: "Error", fit: 0 }]);

@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 import os
-import requests  # you can switch to httpx for async requests
+import requests  # can switch to httpx for async requests
 
 router = APIRouter()
 
-# Use environment variables or default to hardcoded keys (replace with your actual keys or use .env)
+# hardcoded keys
 ADZUNA_APP_ID = os.getenv("ADZUNA_APP_ID", "2f056b28")
 ADZUNA_APP_KEY = os.getenv("ADZUNA_APP_KEY", "e9c956417815ba36d292ce02c9b6aa37")
 BASE_URL = "https://api.adzuna.com/v1/api/jobs/gb/search/1"
@@ -24,7 +24,7 @@ def get_jobs(what: str = Query(..., description="Job title or keyword to search"
         response.raise_for_status()
         data = response.json()
 
-        # Optional: Map the response to only return the jobs list and standardize the format
+        #  jobs format
         jobs = []
         for job in data.get("results", []):
             jobs.append({
