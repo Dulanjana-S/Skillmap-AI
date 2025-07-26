@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 function App() {
   const [skills, setSkills] = useState("");
-  const [interest, setInterest] = useState("tech");
+  const [industry, setindustry] = useState("tech");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [jobListings, setJobListings] = useState([]);
@@ -33,7 +33,7 @@ function App() {
 
     const inputData = {
       skills: skills.split(",").map((s) => s.trim().toLowerCase()),
-      interests: [interest.toLowerCase()],
+      industry: [industry.toLowerCase()],
     };
 
     try {
@@ -63,7 +63,7 @@ function App() {
     <div className="min-h-screen bg-gray-900 text-white font-sans px-4 py-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-center text-purple-400">
-          Skillmap AI — Career Predictor
+          Skillmap AI — Career Predictor and Job Finder
         </h1>
 
         <form
@@ -72,7 +72,7 @@ function App() {
         >
           <div>
             <label className="block mb-2 text-sm text-gray-300">
-              Skills (comma-separated):
+             Add Your Skills (comma-separated):
             </label>
             <input
               type="text"
@@ -85,16 +85,28 @@ function App() {
           </div>
 
           <div>
-            <label className="block mb-2 text-sm text-gray-300">Interests:</label>
+            <label className="block mb-2 text-sm text-gray-300">industry:</label>
             <select
-              value={interest}
-              onChange={(e) => setInterest(e.target.value)}
+              value={industry}
+              onChange={(e) => setindustry(e.target.value)}
               className="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
-              <option value="tech">Tech</option>
-              <option value="business">Business</option>
-              <option value="art">Art</option>
+              <option value="technology">Technology</option>
+              <option value="engineering">Engineering</option>
+              <option value="healthcare">Healthcare</option>
               <option value="marketing">Marketing</option>
+              <option value="art & design">Art & Design</option>
+              <option value="finance">Finance</option>
+              <option value="education">Education</option>
+              <option value="business">Business</option>
+              <option value="media">Media</option>
+              <option value="law & politics">Law & Politics</option>
+              <option value="hospitality">Hospitality</option>
+              <option value="logistics">Logistics</option>
+              <option value="retail & sales">Retail & Sales</option>
+              <option value="sports & fitness">Sports & Fitness</option>
+              <option value="real estate">Real Estate</option>
+              <option value="agriculture">Agriculture</option>
             </select>
           </div>
 
@@ -102,7 +114,7 @@ function App() {
             type="submit"
             className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded w-full font-semibold transition"
           >
-            {loading ? "Loading..." : "Get Career Recommendation"}
+            {loading ? "Loading..." : "Get Career Recommendation and Jobs"}
           </button>
         </form>
 

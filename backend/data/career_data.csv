@@ -1,12 +1,24 @@
-career,skills,interest
-Software Engineer,programming;algorithms;python,tech
-Software Engineer,java;oop;databases,tech
-Data Analyst,statistics;excel;sql,business
-Data Analyst,sql;tableau;analytics,business
-UX Designer,creativity;design;empathy,art
-UX Designer,ux;wireframes;prototyping,art
-Product Manager,leadership;communication;planning,business
-Digital Marketer,seo;content;socialmedia,marketing
-Data Scientist,Python;Pandas;ML,Data Analysis
-Web Developer,HTML;CSS;JavaScript,UI Design
-Mobile Developer,Flutter;Dart;Firebase,Mobile Apps
+Career,Skills,Industry
+Software Developer,Python;JavaScript;SQL;Git;Problem Solving;REST APIs;React;Node.js;Docker;Unit Testing;Debugging;Agile Methodologies,Technology
+Data Scientist,Python;Machine Learning;Data Analysis;Statistics;Pandas;Numpy;Data Visualization;SQL;TensorFlow;Deep Learning;Big Data;Jupyter,Technology
+Cybersecurity Analyst,Network Security;Penetration Testing;Risk Assessment;Firewall Management;SIEM Tools;Incident Response;Vulnerability Scanning,Technology
+Mechanical Engineer,CAD;SolidWorks;Thermodynamics;Manufacturing;3D Printing;FEA;Mechanical Design;Simulation Tools;Prototyping;CAM,Engineering
+Civil Engineer,AutoCAD;Structural Analysis;Construction Management;Project Scheduling;Reinforced Concrete;Site Supervision;Surveying,Engineering
+Nurse,Patient Care;CPR;Medical Terminology;Clinical Skills;Vital Signs Monitoring;EMR Systems;Medication Administration,Healthcare
+Doctor,Diagnosis;Surgery;Clinical Practice;Medical Knowledge;Patient Communication;Prescription;Hospital Protocols;Medical Imaging,Healthcare
+Marketing Manager,SEO;Content Marketing;Google Ads;Analytics;Email Marketing;Copywriting;Brand Management;Social Media Ads;A/B Testing,Marketing
+UX/UI Designer,Wireframing;Figma;Prototyping;Design Thinking;User Research;Usability Testing;HTML/CSS;Color Theory;Interaction Design,Art & Design
+Graphic Designer,Adobe Photoshop;Illustrator;Creativity;Brand Design;Typography;Layout Design;Canva;Print Design;Color Correction,Art & Design
+Accountant,Bookkeeping;Excel;Taxation;Auditing;Financial Statements;QuickBooks;GAAP;Cost Accounting;Payroll,Finance
+Financial Analyst,Financial Modeling;Valuation;Excel;Reporting;Forecasting;Investment Analysis;Dashboards;VBA;Market Research,Finance
+Teacher,Lesson Planning;Classroom Management;Pedagogy;Curriculum Development;Grading;Digital Tools;Student Engagement;Assessment,Education
+Business Analyst,Requirements Gathering;SQL;Documentation;Agile;Business Process Mapping;Stakeholder Management;Data Modeling,Business
+Project Manager,Agile;Scrum;Team Management;Scheduling;Budgeting;Risk Management;MS Project;Gantt Charts;Stakeholder Communication,Business
+HR Specialist,Recruitment;Onboarding;HR Policies;Conflict Resolution;Performance Reviews;Labor Laws;Payroll;HRIS Systems,Business
+Journalist,Writing;Interviewing;Research;Storytelling;Editing;Media Ethics;SEO Writing;Fact-checking,Media
+Video Editor,Adobe Premiere;After Effects;Editing;Storyboarding;Motion Graphics;Sound Editing;Color Grading;B-Roll Management,Media
+Lawyer,Legal Research;Litigation;Contracts;Compliance;Court Procedures;Legal Writing;Case Management;Negotiation,Law & Politics
+Hotel Manager,Guest Services;Operations;Scheduling;Hospitality;Revenue Management;Property Management;Housekeeping Supervision,Hospitality
+Supply Chain Manager,Logistics;Inventory;Procurement;Forecasting;Supply Chain Planning;Warehouse Management;ERP Systems;Distribution,Logistics
+Retail Sales Associate,Customer Service;POS;Merchandising;Sales;Inventory Handling;Product Knowledge;Cash Handling,Retail & Sales
+Fitness Trainer,Strength Training;Nutrition;Coaching;Motivation;Workout Planning;CPR Certification;Client Assessment;Injury Prevention,Sports & Fitness

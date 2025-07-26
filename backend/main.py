@@ -10,58 +10,75 @@ from backend.database import engine, SessionLocal
 from backend import models
 from backend.routes.adzuna_routes import router as adzuna_router
 
-# Database Setup
+# -------------- Database Setup --------------
 models.Base.metadata.create_all(bind=engine)
 
-# FastAPI app initialization
+# -------------- FastAPI App Initialization --------------
 app = FastAPI()
 
-# Add Adzuna jobs router BEFORE any route definitions
-app.include_router(adzuna_router, prefix="/jobs", tags=["Jobs"])
-
-# CORS middleware - allow your React frontend
+# -------------- CORS Middleware --------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React app URL
+    allow_origins=["http://localhost:3000"],  # React frontend origin
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Load & preprocess career data CSV
+# -------------- Load Career Data --------------
 data_path = os.path.join(os.path.dirname(__file__), 'data', 'career_data.csv')
 df = pd.read_csv(data_path)
+df.columns = df.columns.str.lower()  # <-- Normalize column names
 
-# Replace semicolons with space in skills, then combine skills + interest in lowercase
-df["features"] = (df["skills"].str.replace(";", " ", regex=False) + " " + df["interest"]).str.lower()
 
-# Initialize vectorizer & fit on features
+# Debug: check columns
+print("Loaded CSV Columns:", df.columns.tolist())
+
+# Ensure required columns are present
+required_columns = {"career", "skills", "industry"}
+if not required_columns.issubset(df.columns):
+    raise ValueError(f"CSV must contain the following columns: {required_columns}")
+
+# Combine 'skills' and 'industry' into a single feature string
+df["features"] = (
+    df["skills"].fillna("").str.replace(";", " ", regex=False) + " " + df["industry"].fillna("")
+).str.lower()
+
+# Vectorize features
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df["features"])
 
-# Input schema for predict route
+# -------------- Request Schema --------------
 class CareerInput(BaseModel):
     skills: list[str]
-    interests: list[str]
+    industry: list[str]
 
+# -------------- Routes --------------
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Skillmap AI API"}
 
 @app.post("/predict")
 def predict(input: CareerInput):
-    # Combine skills and interests from input, lowercased, space separated
-    input_text = " ".join(input.skills + input.interests).lower()
-    
-    # Vectorize input text and calculate cosine similarity with career dataset
+    # Join user input
+    input_text = " ".join(input.skills + input.industry).lower().strip()
+
+    if not input_text:
+        return {
+            "recommendation": [
+                {
+                    "career": "Input is empty. Please enter your skills and interests.",
+                    "fit": 0.0
+                }
+            ]
+        }
+
+    # Vectorize and calculate similarity
     input_vector = vectorizer.transform([input_text])
-    sims = cosine_similarity(input_vector, X)[0]
+    similarities = cosine_similarity(input_vector, X)[0]
+    best_index = similarities.argmax()
+    best_score = similarities[best_index]
 
-    best_index = sims.argmax()
-    best_score = sims[best_index]
-    best_career = df.iloc[best_index]["career"]
-
-    # If similarity is very low (e.g. < 0.1), treat as no match
     if best_score < 0.1:
         return {
             "recommendation": [
@@ -72,16 +89,20 @@ def predict(input: CareerInput):
             ]
         }
 
+    recommended_career = df.iloc[best_index]["career"]
     return {
         "recommendation": [
             {
-                "career": best_career,
+                "career": recommended_career,
                 "fit": round(best_score * 100, 2)
             }
         ]
     }
 
-# DB session dependency (if needed by other routes)
+# -------------- Include Job Listing Routes (Adzuna) --------------
+app.include_router(adzuna_router, prefix="/jobs", tags=["Jobs"])
+
+# -------------- Dependency for DB Session --------------
 def get_db():
     db = SessionLocal()
     try:
