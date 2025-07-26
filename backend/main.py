@@ -10,13 +10,16 @@ from backend.database import engine, SessionLocal
 from backend import models
 from backend.routes.adzuna_routes import router as adzuna_router
 
-# Create database tables once
+# ---------- Database Setup ----------
 models.Base.metadata.create_all(bind=engine)
 
-# Create FastAPI app only once
+# ---------- FastAPI App Initialization ----------
 app = FastAPI()
 
-# Setup CORS middleware
+# ✅ Add router BEFORE any route definitions
+app.include_router(adzuna_router, prefix="/jobs", tags=["Jobs"])
+
+# ---------- CORS Middleware ----------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # frontend origin
@@ -25,35 +28,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load career data
+# ---------- Load & Vectorize Career Data ----------
 data_path = os.path.join(os.path.dirname(__file__), 'data', 'career_data.csv')
 df = pd.read_csv(data_path)
 df["features"] = (df["skills"].str.replace(";", " ") + " " + df["interest"]).str.lower()
 
-# Vectorize features
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df["features"])
 
-# Input schema for prediction
+# ---------- Input Schema ----------
 class CareerInput(BaseModel):
     skills: list[str]
     interests: list[str]
 
+# ---------- Root Route ----------
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Skillmap AI API"}
 
+# ---------- Predict Route ----------
 @app.post("/predict")
 def predict(input: CareerInput):
-    print("Skills received:", input.skills)
-    print("Interests received:", input.interests)
-
     input_text = " ".join(input.skills + input.interests).lower()
-    print("Combined input:", input_text)
-
     input_vector = vectorizer.transform([input_text])
     sims = cosine_similarity(input_vector, X)[0]
-    print("Similarities:", sims.tolist())
 
     best_index = sims.argmax()
     best_score = sims[best_index]
@@ -68,25 +66,10 @@ def predict(input: CareerInput):
         ]
     }
 
-
-    return {
-        "recommendation": [
-            {
-                "career": best_career,
-                "fit": round(best_score * 100, 2)
-            }
-        ]
-    }
-
-
-
-# Dependency for DB session
+# ---------- DB Dependency ----------
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-# Include Adzuna API router with prefix
-app.include_router(adzuna_router, prefix="/adzuna", tags=["Adzuna"])
