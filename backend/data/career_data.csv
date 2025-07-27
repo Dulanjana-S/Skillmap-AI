@@ -1,7 +1,7 @@
 career,skills,industry
 Software Developer,Python;JavaScript;SQL;Git;Problem Solving;REST APIs;React;Node.js;Docker;Unit Testing;Debugging;Agile Methodologies,Technology
 Data Scientist,Python;Machine Learning;Data Analysis;Statistics;Pandas;Numpy;Data Visualization;SQL;TensorFlow;Deep Learning;Big Data;Jupyter,Technology
-Cybersecurity Analyst,Network Security;Penetration Testing;Risk Assessment;Firewall Management;SIEM Tools;Python;Incident Response;Vulnerability Scanning,Technology
+Cybersecurity Analyst,Network Security;Penetration Testing;Risk Assessment;Firewall Management;SIEM Tools;Incident Response;Vulnerability Scanning,Technology
 Mechanical Engineer,CAD;SolidWorks;Thermodynamics;Manufacturing;3D Printing;FEA;Mechanical Design;Simulation Tools;Prototyping;CAM,Engineering
 Civil Engineer,AutoCAD;Structural Analysis;Construction Management;Project Scheduling;Reinforced Concrete;Site Supervision;Surveying,Engineering
 Nurse,Patient Care;CPR;Medical Terminology;Clinical Skills;Vital Signs Monitoring;EMR Systems;Medication Administration,Healthcare
@@ -22,5 +22,3 @@ Hotel Manager,Guest Services;Operations;Scheduling;Hospitality;Revenue Managemen
 Supply Chain Manager,Logistics;Inventory;Procurement;Forecasting;Supply Chain Planning;Warehouse Management;ERP Systems;Distribution,Logistics
 Retail Sales Associate,Customer Service;POS;Merchandising;Sales;Inventory Handling;Product Knowledge;Cash Handling,Retail & Sales
 Fitness Trainer,Strength Training;Nutrition;Coaching;Motivation;Workout Planning;CPR Certification;Client Assessment;Injury Prevention,Sports & Fitness
-
-

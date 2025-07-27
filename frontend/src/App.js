@@ -119,23 +119,23 @@ function App() {
         </form>
 
         {result && (
-          <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold mb-4 text-purple-400">
-              Recommended Careers:
-            </h2>
-            <ul className="space-y-2">
-              {result.map((item, index) => (
-                <li key={index} className="bg-gray-700 p-3 rounded-lg">
-                  <span className="font-medium text-white">{item.career}</span>{" "}
-                  —{" "}
-                  <span className="text-green-400">
-                    Fit Score: {item.fit.toFixed(2)}%
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+  <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg">
+    <h2 className="text-xl font-semibold mb-4 text-purple-400">
+      Recommended Careers:
+    </h2>
+    <ul className="space-y-2">
+      {result.map((item, index) => (
+        <li key={index} className="bg-gray-700 p-3 rounded-lg">
+          <span className="font-medium text-white">{item.career}</span> —{" "}
+          <span className="text-green-400">
+            Fit Score: {item.fit.toFixed(2)}%
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
 
         {jobsLoading && (
           <p className="text-sm text-gray-300 mt-4">Loading jobs...</p>
