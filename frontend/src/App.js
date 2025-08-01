@@ -136,8 +136,7 @@ function App() {
   </div>
 )}
 
-
-        {jobsLoading && (
+ {jobsLoading && (
           <p className="text-sm text-gray-300 mt-4">Loading jobs...</p>
         )}
 

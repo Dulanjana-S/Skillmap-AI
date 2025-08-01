@@ -10,13 +10,13 @@ from backend.database import engine, SessionLocal
 from backend import models
 from backend.routes.adzuna_routes import router as adzuna_router
 
-# Create all tables in the database
+#Create all tables in the database
 models.Base.metadata.create_all(bind=engine)
 
-# Initialize FastAPI app
+#Initialize FastAPI app
 app = FastAPI()
 
-# Configure CORS
+#Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -25,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load and preprocess career data
+#Load and preprocess career data
 data_path = os.path.join(os.path.dirname(__file__), "data", "career_data.csv")
 df = pd.read_csv(data_path)
 df.columns = df.columns.str.lower()
@@ -41,7 +41,7 @@ df["features"] = (
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df["features"])
 
-# Input schema
+#Input schema
 class CareerInput(BaseModel):
     skills: list[str]
     industry: list[str]
@@ -59,7 +59,7 @@ def predict(input: CareerInput):
     input_vector = vectorizer.transform([input_text])
     similarities = cosine_similarity(input_vector, X)[0]
 
-    # Get indices of top 5 best matches
+    #Get indices of top 5 best matches
     top_indices = similarities.argsort()[::-1][:5]
     recommendations = []
 
@@ -78,10 +78,10 @@ def predict(input: CareerInput):
     return {"recommendation": recommendations}
 
 
-# Include Adzuna job routes
+#Include Adzuna job routes
 app.include_router(adzuna_router, prefix="/jobs", tags=["Jobs"])
 
-# DB session dependency
+#DB session dependency
 def get_db():
     db = SessionLocal()
     try:

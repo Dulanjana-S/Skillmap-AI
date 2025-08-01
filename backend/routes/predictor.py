@@ -11,7 +11,8 @@ class UserInput(BaseModel):
 
 @router.post("/predict")
 async def predict_career(data: UserInput):
-    # Dummy logic for now - replace with your actual prediction code
+
+    # replace with actual prediction code
     return {
         "recommendation": [
             {"career": "Software Engineer", "fit": 80.0}
