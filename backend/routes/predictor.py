@@ -1,5 +1,3 @@
-# backend/routers/predictor.py
-
 from fastapi import APIRouter
 from pydantic import BaseModel
 

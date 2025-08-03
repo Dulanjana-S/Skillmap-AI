@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from . import Base
+from .database import Base
 
 #import models
-from backend.database import models
+from backend import models
 
 from backend.database import Base, engine
 from sqlalchemy.ext.declarative import declarative_base
