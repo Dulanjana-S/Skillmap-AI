@@ -7,7 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import os
 
 #from backend.database import engine, SessionLocal
-from database import engine, SessionLocal
+from database import engine, SessionLocal, Base
 
 from backend.database import models
 from backend.routes.adzuna_routes import router as adzuna_router
