@@ -2,13 +2,12 @@
 
 **Skillmap AI** is an intelligent web application that helps users discover the best career paths based on their skills and interests.  
 It uses **machine learning** for predictions and integrates with the **Adzuna API** to fetch real-time job opportunities related to those careers.
----
 
 🚀 Live Demo
 Coming soon...
 ---
 
-🧠 Features
+## 🧠 Features
 * ✅ AI-powered **career prediction** (FastAPI + scikit-learn)
 * ✅ **Multiple** recommended career paths
 * ✅ **Real-time job listings** using Adzuna API
@@ -17,17 +16,17 @@ Coming soon...
 * ✅ **PostgreSQL** integration via Supabase
 
 
-📸 Screenshots
-### 1. Home — Skill Input Form
+## 📸 Screenshots
+## 1. Home — Skill Input Form
 <img width="1904" height="906" alt="1" src="https://github.com/user-attachments/assets/25988a9f-8826-4b11-8c10-c6ac07b4d3a4" />
 
-### 2. Career Recommendations
+## 2. Career Recommendations
 <img width="1887" height="899" alt="2" src="https://github.com/user-attachments/assets/3a55b97c-80e8-4167-8d3b-325c6e416a21" />
 
-### 3. Matching Jobs via Adzuna
+## 3. Matching Jobs via Adzuna
 <img width="1881" height="902" alt="3" src="https://github.com/user-attachments/assets/046d9e25-ac00-4a98-b314-f1fdca4b996a" />
 
-⚙️ Tech Stack
+## ⚙️ Tech Stack
 * | Layer        | Technology      |
 * |--------------|------------------|
 * | Frontend     | React, Tailwind CSS |
@@ -36,7 +35,7 @@ Coming soon...
 * | Job Listings | Adzuna API |
 ---
 
-📂 Project Structure
+## 📂 Project Structure
 * Skillmap-AI/
 * ├── frontend/               # React frontend
 * │   └── src/
@@ -48,40 +47,40 @@ Coming soon...
 * │   └── data/career_data.csv
 * └── README.md
 
-🛠️ Setup Instructions
+## 🛠️ Setup Instructions
 ## 1. Clone the Repository
 - git clone - https://github.com/Dulanjana-S/Skillmap-AI
 cd skillmap-ai
----
+
 ## 2. Backend Setup (FastAPI)
 
-cd skillmap-ai backend
-pip install -r requirements.txt
-python -m uvicorn backend.main:app --reload
+- cd skillmap-ai backend
+- pip install -r requirements.txt
+- python -m uvicorn backend.main:app --reload
 
-.env for backend
-Create a .env file in the backend/ directory:
-ADZUNA_APP_ID=your_adzuna_app_id
-ADZUNA_APP_KEY=your_adzuna_app_key
-DATABASE_URL=your_supabase_postgres_url
+- .env for backend
+- Create a .env file in the backend/ directory:
+- ADZUNA_APP_ID=your_adzuna_app_id
+- ADZUNA_APP_KEY=your_adzuna_app_key
+- DATABASE_URL=your_supabase_postgres_url
 
 ## 3. Frontend Setup (React)
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
 
 🔗 API Routes
-Career Prediction
-http
-POST /predict
-{
-  "skills": ["python", "data analysis"],
-  "industry": ["software"]
-}
+- Career Prediction
+- http
+- POST /predict
+- {
+-  "skills": ["python", "data analysis"],
+-  "industry": ["software"]
+- }
 
-Get Jobs
-http
-GET /jobs/?what=software
+- Get Jobs
+- http
+- GET /jobs/?what=software
 
 ## 🔐 Environment Variables Summary
 * | Variable          | Description                       |
@@ -104,10 +103,10 @@ GET /jobs/?what=software
 ## 🛣️ Future Improvements
  *  Add job filters: location, salary range, job type
  *  Career Path Roadmaps feature:
-* -🎓 Education & certifications needed
-* -🧠 Skills and projects to build
-* -🧪 Suggested internships or jobs
-* -🧭 Step-by-step visual timeline
+ - 🎓 Education & certifications needed
+ - 🧠 Skills and projects to build
+ - 🧪 Suggested internships or jobs
+ -🧭 Step-by-step visual timeline
  - User authentication and profile saving
  - Employers can post jobs to your local job DB
  - Bookmark careers and job listings
