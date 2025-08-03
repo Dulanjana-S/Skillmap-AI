@@ -22,8 +22,12 @@ Coming soon...
 ---
 
 ## 📸 Screenshots
-
-> _Add relevant screenshots here once deployed_
+### 1. Home — Skill Input Form
+<img width="1904" height="906" alt="1" src="https://github.com/user-attachments/assets/25988a9f-8826-4b11-8c10-c6ac07b4d3a4" />
+### 2. Career Recommendations
+<img width="1887" height="899" alt="2" src="https://github.com/user-attachments/assets/3a55b97c-80e8-4167-8d3b-325c6e416a21" />
+### 3. Matching Jobs via Adzuna
+<img width="1881" height="902" alt="3" src="https://github.com/user-attachments/assets/046d9e25-ac00-4a98-b314-f1fdca4b996a" />
 
 ---
 
