@@ -36,21 +36,21 @@ Coming soon...
 ---
 
 ## 📂 Project Structure
-* Skillmap-AI/
-* ├── frontend/               # React frontend
-* │   └── src/
-* ├── backend/                # FastAPI backend
-* │   ├── main.py
-* │   ├── routes/
-* │   ├── models/
-* │   ├── database/
-* │   └── data/career_data.csv
-* └── README.md
+# Skillmap-AI/
+# ├── frontend/               # React frontend
+# │   └── src/
+# ├── backend/                # FastAPI backend
+# │   ├── main.py
+# │   ├── routes/
+# │   ├── models/
+# │   ├── database/
+# │   └── data/career_data.csv
+# └── README.md
 
 ## 🛠️ Setup Instructions
 ## 1. Clone the Repository
-- git clone - https://github.com/Dulanjana-S/Skillmap-AI
-cd skillmap-ai
+ git clone - https://github.com/Dulanjana-S/Skillmap-AI
+ cd skillmap-ai
 
 ## 2. Backend Setup (FastAPI)
 
