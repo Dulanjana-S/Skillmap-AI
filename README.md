@@ -9,12 +9,12 @@ Coming soon...
 ---
 
 🧠 Features
-*✅ AI-powered **career prediction** (FastAPI + scikit-learn)
-*✅ **Multiple** recommended career paths
-*✅ **Real-time job listings** using Adzuna API
-*✅ **Get Jobs** button fetches relevant jobs after prediction
-*✅ Clean and responsive **React UI**
-*✅ **PostgreSQL** integration via Supabase
+* ✅ AI-powered **career prediction** (FastAPI + scikit-learn)
+* ✅ **Multiple** recommended career paths
+* ✅ **Real-time job listings** using Adzuna API
+* ✅ **Get Jobs** button fetches relevant jobs after prediction
+* ✅ Clean and responsive **React UI**
+* ✅ **PostgreSQL** integration via Supabase
 
 
 📸 Screenshots
@@ -29,25 +29,25 @@ Coming soon...
 
 
 ⚙️ Tech Stack
-*| Layer        | Technology      |
-*|--------------|------------------|
-*| Frontend     | React, Tailwind CSS |
-*| Backend      | FastAPI, Python, scikit-learn |
-*| Database     | PostgreSQL (Supabase) |
-*| Job Listings | Adzuna API |
+* | Layer        | Technology      |
+* |--------------|------------------|
+* | Frontend     | React, Tailwind CSS |
+* | Backend      | FastAPI, Python, scikit-learn |
+* | Database     | PostgreSQL (Supabase) |
+* | Job Listings | Adzuna API |
 ---
 
 📂 Project Structure
-*Skillmap-AI/
-*├── frontend/               # React frontend
-*│   └── src/
-*├── backend/                # FastAPI backend
-*│   ├── main.py
-*│   ├── routes/
-*│   ├── models/
-*│   ├── database/
-*│   └── data/career_data.csv
-*└── README.md
+* Skillmap-AI/
+* ├── frontend/               # React frontend
+* │   └── src/
+* ├── backend/                # FastAPI backend
+* │   ├── main.py
+* │   ├── routes/
+* │   ├── models/
+* │   ├── database/
+* │   └── data/career_data.csv
+* └── README.md
 ---
 
 🛠️ Setup Instructions
@@ -88,34 +88,34 @@ GET /jobs/?what=software
 
 
 🔐 Environment Variables Summary
-*| Variable          | Description                       |
-*|-------------------|-----------------------------------|
-*| `ADZUNA_APP_ID`   | Your Adzuna app ID                |
-*| `ADZUNA_APP_KEY`  | Your Adzuna API key               |
-*| `DATABASE_URL`    | Supabase PostgreSQL connection URL|
+* | Variable          | Description                       |
+* |-------------------|-----------------------------------|
+* | `ADZUNA_APP_ID`   | Your Adzuna app ID                |
+* | `ADZUNA_APP_KEY`  | Your Adzuna API key               |
+* | `DATABASE_URL`    | Supabase PostgreSQL connection URL|
 ---
 
 📈 Roadmap
-*[x] Build machine learning model
-*[x] Connect to Adzuna API
-*[x] Show multiple careers
-*[x] Fetch matching jobs
-*[ ] Add filters (location, salary)
-*[ ] Add employer job posting module
-*[ ] Add authentication & user profiles
+* [x] Build machine learning model
+* [x] Connect to Adzuna API
+* [x] Show multiple careers
+* [x] Fetch matching jobs
+* [ ] Add filters (location, salary)
+* [ ] Add employer job posting module
+* [ ] Add authentication & user profiles
 
 
 🛣️ Future Improvements
  *Add job filters: location, salary range, job type
  *Career Path Roadmaps feature:
-*-🎓 Education & certifications needed
-*-🧠 Skills and projects to build
-*-🧪 Suggested internships or jobs
-*-🧭 Step-by-step visual timeline
-*- User authentication and profile saving
-*- Employers can post jobs to your local job DB
-*- Bookmark careers and job listings
-*- Add resume analyzer for smarter predictions
+* -🎓 Education & certifications needed
+* -🧠 Skills and projects to build
+* -🧪 Suggested internships or jobs
+* -🧭 Step-by-step visual timeline
+* - User authentication and profile saving
+* - Employers can post jobs to your local job DB
+* - Bookmark careers and job listings
+* - Add resume analyzer for smarter predictions
 
 🤝 Contributing
 Contributions are welcome!  
