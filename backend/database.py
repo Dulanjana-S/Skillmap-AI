@@ -21,11 +21,11 @@ DATABASE_NAME="skillmap_ai"
 
 
 #this is SUPABASE Connection
-#DATABASE_URL = os.getenv("postgresql://postgres:[Sasmitha@123]@db.mfesiyznyigpchtnsjjw.supabase.co:5432/postgres")
+DATABASE_URL = os.getenv("postgresql://postgres:[Sasmitha@123]@db.mfesiyznyigpchtnsjjw.supabase.co:5432/postgres")
 
 
 # PSQL Connection 
-DATABASE_URL = f"postgresql://{"postgres"}:{"1234"}@{"localhost"}:{"5432"}/{"skillmap_ai"}"
+#DATABASE_URL = f"postgresql://{"postgres"}:{"1234"}@{"localhost"}:{"5432"}/{"skillmap_ai"}"
 
 
 #DATABASE_URL = os.getenv("DATABASE_URL")
