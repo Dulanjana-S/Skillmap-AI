@@ -36,16 +36,16 @@ Coming soon...
 ---
 
 ## 📂 Project Structure
-# Skillmap-AI/
-# ├── frontend/               # React frontend
-# │   └── src/
-# ├── backend/                # FastAPI backend
-# │   ├── main.py
-# │   ├── routes/
-# │   ├── models/
-# │   ├── database/
-# │   └── data/career_data.csv
-# └── README.md
+Skillmap-AI/
+├── frontend/               # React frontend
+│   └── src/
+├── backend/                # FastAPI backend
+│   ├── main.py
+│   ├── routes/
+│   ├── models/
+│   ├── database/
+│   └── data/career_data.csv
+└── README.md
 
 ## 🛠️ Setup Instructions
 ## 1. Clone the Repository
@@ -54,33 +54,33 @@ Coming soon...
 
 ## 2. Backend Setup (FastAPI)
 
-- cd skillmap-ai backend
-- pip install -r requirements.txt
-- python -m uvicorn backend.main:app --reload
+cd skillmap-ai backend
+pip install -r requirements.txt
+python -m uvicorn backend.main:app --reload
 
-- .env for backend
-- Create a .env file in the backend/ directory:
-- ADZUNA_APP_ID=your_adzuna_app_id
-- ADZUNA_APP_KEY=your_adzuna_app_key
-- DATABASE_URL=your_supabase_postgres_url
+.env for backend
+Create a .env file in the backend/ directory:
+ADZUNA_APP_ID=your_adzuna_app_id
+ADZUNA_APP_KEY=your_adzuna_app_key
+DATABASE_URL=your_supabase_postgres_url
 
 ## 3. Frontend Setup (React)
-- cd frontend
-- npm install
-- npm start
+cd frontend
+npm install
+npm start
 
 🔗 API Routes
-- Career Prediction
-- http
-- POST /predict
-- {
--  "skills": ["python", "data analysis"],
--  "industry": ["software"]
-- }
+Career Prediction
+http
+POST /predict
+{
+"skills": ["python", "data analysis"],
+"industry": ["software"]
+}
 
-- Get Jobs
-- http
-- GET /jobs/?what=software
+Get Jobs
+http
+GET /jobs/?what=software
 
 ## 🔐 Environment Variables Summary
 * | Variable          | Description                       |
