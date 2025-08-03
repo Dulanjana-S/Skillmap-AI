@@ -20,11 +20,12 @@ Coming soon...
 📸 Screenshots
 ### 1. Home — Skill Input Form
 <img width="1904" height="906" alt="1" src="https://github.com/user-attachments/assets/25988a9f-8826-4b11-8c10-c6ac07b4d3a4" />
+
 ### 2. Career Recommendations
 <img width="1887" height="899" alt="2" src="https://github.com/user-attachments/assets/3a55b97c-80e8-4167-8d3b-325c6e416a21" />
+
 ### 3. Matching Jobs via Adzuna
 <img width="1881" height="902" alt="3" src="https://github.com/user-attachments/assets/046d9e25-ac00-4a98-b314-f1fdca4b996a" />
-
 
 ⚙️ Tech Stack
 * | Layer        | Technology      |
@@ -46,14 +47,13 @@ Coming soon...
 * │   ├── database/
 * │   └── data/career_data.csv
 * └── README.md
----
 
 🛠️ Setup Instructions
-1. Clone the Repository
-git clone - https://github.com/Dulanjana-S/Skillmap-AI
+## 1. Clone the Repository
+- git clone - https://github.com/Dulanjana-S/Skillmap-AI
 cd skillmap-ai
 ---
-2. Backend Setup (FastAPI)
+## 2. Backend Setup (FastAPI)
 
 cd skillmap-ai backend
 pip install -r requirements.txt
@@ -65,7 +65,7 @@ ADZUNA_APP_ID=your_adzuna_app_id
 ADZUNA_APP_KEY=your_adzuna_app_key
 DATABASE_URL=your_supabase_postgres_url
 
-3. Frontend Setup (React)
+## 3. Frontend Setup (React)
 cd frontend
 npm install
 npm start
@@ -83,8 +83,7 @@ Get Jobs
 http
 GET /jobs/?what=software
 
-
-🔐 Environment Variables Summary
+## 🔐 Environment Variables Summary
 * | Variable          | Description                       |
 * |-------------------|-----------------------------------|
 * | `ADZUNA_APP_ID`   | Your Adzuna app ID                |
@@ -92,7 +91,7 @@ GET /jobs/?what=software
 * | `DATABASE_URL`    | Supabase PostgreSQL connection URL|
 ---
 
-📈 Roadmap
+## 📈 Roadmap
 * [x] Build machine learning model
 * [x] Connect to Adzuna API
 * [x] Show multiple careers
@@ -102,25 +101,25 @@ GET /jobs/?what=software
 * [ ] Add authentication & user profiles
 
 
-🛣️ Future Improvements
- * Add job filters: location, salary range, job type
- * Career Path Roadmaps feature:
+## 🛣️ Future Improvements
+ *  Add job filters: location, salary range, job type
+ *  Career Path Roadmaps feature:
 * -🎓 Education & certifications needed
 * -🧠 Skills and projects to build
 * -🧪 Suggested internships or jobs
 * -🧭 Step-by-step visual timeline
-* - User authentication and profile saving
-* - Employers can post jobs to your local job DB
-* - Bookmark careers and job listings
-* - Add resume analyzer for smarter predictions
+ - User authentication and profile saving
+ - Employers can post jobs to your local job DB
+ - Bookmark careers and job listings
+ - Add resume analyzer for smarter predictions
 
 🤝 Contributing
-Contributions are welcome!  
-Feel free to fork, submit issues, or send a pull request.
----
+- Contributions are welcome!
+- Feel free to fork, submit issues, or send a pull request.
+
 
 📄 License
 MIT License © 2025 [DulanjanaS]
 ---
 🌟 Show Your Support
-Give a ⭐ if you like this project, or share it with others who might benefit!
+- Give a ⭐ if you like this project, or share it with others who might benefit!
